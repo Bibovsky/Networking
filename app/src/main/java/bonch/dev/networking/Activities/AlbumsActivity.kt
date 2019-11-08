@@ -54,8 +54,10 @@ class AlbumsActivity : AppCompatActivity() {
                             //var idText = rvAlb.findViewById<TextView>(R.id.itema_id)
                             //var id =(rvAlb.adapter as AlbumAdapter).getId(response.body()!![it])
                             rvAlb.adapter!!.notifyDataSetChanged()
-                            var id = rvAlb.getChildAt(it).findViewById<TextView>(R.id.itema_id)
+
+                            var id = rvAlb.findViewHolderForLayoutPosition(it)!!.itemView.findViewById<TextView>(R.id.itema_id)
                                 .text.toString().toInt()
+
                             //var id = idText.text.toString().toInt()
                             CoroutineScope(Dispatchers.Default).launch {
                                 val responseDel = service.delAlbum(id)
